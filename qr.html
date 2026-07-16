@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>QR Generator — MCR Planet Internal</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="/assets/fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --gold:#c9a84c;
+    --bg:#0a0a0a;
+    --text:#f1ede4;
+    --text-2:#a8a49a;
+    --text-3:#6b685f;
+    --border:rgba(201,168,76,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;padding:40px 20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  h1{
+    font-family:'Libre Baskerville',serif;
+    font-size:1.3rem;letter-spacing:.3em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:8px;
+  }
+  .subtitle{color:var(--text-3);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:36px;}
+  .card{
+    border:1px solid var(--border);
+    padding:32px;
+    background:rgba(255,255,255,0.02);
+    margin-bottom:24px;
+  }
+  .card h2{
+    font-family:'Libre Baskerville',serif;
+    font-size:1rem;color:var(--text);
+    margin-bottom:4px;
+  }
+  .card .hint{color:var(--text-3);font-size:.78rem;margin-bottom:20px;}
+  label{
+    display:block;
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--text-3);font-weight:600;margin:14px 0 6px;
+  }
+  input[type="text"], select{
+    width:100%;
+    background:transparent;color:var(--text);
+    border:1px solid var(--border);
+    padding:12px 14px;
+    font-family:'Nunito',sans-serif;font-size:.88rem;
+    transition:border-color .2s;
+  }
+  input[type="text"]:focus, select:focus{outline:none;border-color:var(--gold);}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:600px){.row{grid-template-columns:1fr;}}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--gold);color:var(--bg);
+    border:1px solid var(--gold);
+    font-family:'Nunito',sans-serif;font-size:.65rem;
+    letter-spacing:.25em;text-transform:uppercase;font-weight:700;
+    padding:14px 28px;margin-top:20px;
+    cursor:pointer;text-decoration:none;
+    transition:all .2s;
+  }
+  .btn:hover{background:transparent;color:var(--gold);}
+  .btn-ghost{background:transparent;color:var(--gold);}
+  .btn-ghost:hover{background:var(--gold);color:var(--bg);}
+  .url-preview{
+    padding:14px 16px;
+    background:rgba(201,168,76,0.06);
+    border:1px solid var(--border);
+    border-left:2px solid var(--gold);
+    font-family:'Courier New',monospace;font-size:.78rem;
+    color:var(--gold);
+    word-break:break-all;
+    margin:18px 0;
+    user-select:all;cursor:text;
+  }
+  .qr-box{
+    margin-top:24px;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    background:#fff;
+    min-height:280px;
+  }
+  .qr-box canvas, .qr-box img{display:block;max-width:100%;}
+  .qr-placeholder{color:#999;font-size:.85rem;text-align:center;padding:40px;}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;}
+  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .preset-btn{
+    background:transparent;color:var(--text-3);
+    border:1px solid var(--border);
+    font-family:'Nunito',sans-serif;font-size:.62rem;
+    letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    padding:8px 14px;cursor:pointer;transition:all .2s;
+  }
+  .preset-btn:hover{color:var(--gold);border-color:var(--gold);}
+  .back-link{
+    color:var(--text-3);text-decoration:none;font-size:.65rem;
+    letter-spacing:.2em;text-transform:uppercase;
+    display:inline-block;margin-bottom:32px;
+    transition:color .2s;
+  }
+  .back-link:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="/" class="back-link">← Back to site</a>
+  <h1>QR Generator</h1>
+  <div class="subtitle">Internal tool · MCR Planet</div>
+
+  <div class="card">
+    <h2>Generate UTM-tagged QR code</h2>
+    <p class="hint">For business cards, booth displays, print materials. Scans will be tracked in Umami analytics.</p>
+
+    <div class="presets">
+      <button class="preset-btn" onclick="applyPreset('business-card')">Business Card</button>
+      <button class="preset-btn" onclick="applyPreset('booth')">Conference Booth</button>
+      <button class="preset-btn" onclick="applyPreset('email-signature')">Email Signature</button>
+      <button class="preset-btn" onclick="applyPreset('print-catalog')">Print Catalog</button>
+    </div>
+
+    <label for="url">Target URL (page on mcrplanet.com)</label>
+    <input type="text" id="url" value="/" placeholder="/ or /pages/equipment.html?id=screens-gvm">
+
+    <div class="row">
+      <div>
+        <label for="source">UTM Source <span style="color:var(--text-3);font-weight:400;">(required)</span></label>
+        <input type="text" id="source" placeholder="hannover-messe" value="business-card">
+      </div>
+      <div>
+        <label for="medium">UTM Medium</label>
+        <select id="medium">
+          <option value="qr-code">qr-code</option>
+          <option value="business-card">business-card</option>
+          <option value="booth">booth</option>
+          <option value="print">print</option>
+          <option value="email">email</option>
+          <option value="offline">offline</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="campaign">UTM Campaign <span style="color:var(--text-3);font-weight:400;">(optional)</span></label>
+    <input type="text" id="campaign" placeholder="2026-spring" value="">
+
+    <div class="url-preview" id="url-preview">https://mcrplanet.com/</div>
+
+    <div class="actions">
+      <button class="btn" onclick="generateQR()">Generate QR</button>
+      <button class="btn btn-ghost" id="download-btn" onclick="downloadQR()" style="display:none">Download PNG</button>
+      <button class="btn btn-ghost" onclick="copyUrl()">Copy URL</button>
+    </div>
+
+    <div class="qr-box" id="qr-box">
+      <div class="qr-placeholder">Configure parameters above, then click <strong>Generate QR</strong></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How to use</h2>
+    <p style="color:var(--text-2);font-size:.88rem;line-height:1.7;">
+      <strong>1.</strong> Choose a preset or configure manually.<br>
+      <strong>2.</strong> Click <em>Generate QR</em>.<br>
+      <strong>3.</strong> Download PNG, print on your materials.<br>
+      <strong>4.</strong> Track scans in <a href="https://cloud.umami.is" target="_blank" style="color:var(--gold);">Umami</a> — filter by UTM parameters.
+    </p>
+  </div>
+</div>
+
+<!-- QRious — tiny QR library (~15KB) -->
+<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<script>
+  var SITE_BASE = 'https://mcrplanet.com';
+  var qrInstance = null;
+
+  function buildUrl(){
+    var path = document.getElementById('url').value.trim() || '/';
+    if (path.charAt(0) !== '/') path = '/' + path;
+    var params = [];
+    var source = document.getElementById('source').value.trim();
+    var medium = document.getElementById('medium').value.trim();
+    var campaign = document.getElementById('campaign').value.trim();
+    if (source) params.push('utm_source=' + encodeURIComponent(source));
+    if (medium) params.push('utm_medium=' + encodeURIComponent(medium));
+    if (campaign) params.push('utm_campaign=' + encodeURIComponent(campaign));
+    var sep = path.indexOf('?') >= 0 ? '&' : '?';
+    return SITE_BASE + path + (params.length ? sep + params.join('&') : '');
+  }
+
+  function updatePreview(){
+    document.getElementById('url-preview').textContent = buildUrl();
+  }
+
+  function generateQR(){
+    var url = buildUrl();
+    var box = document.getElementById('qr-box');
+    box.innerHTML = '<canvas id="qr-canvas"></canvas>';
+    qrInstance = new QRious({
+      element: document.getElementById('qr-canvas'),
+      value: url,
+      size: 400,
+      level: 'H',           /* высокая коррекция ошибок */
+      background: '#ffffff',
+      foreground: '#0a0a0a',
+      padding: 16
+    });
+    document.getElementById('download-btn').style.display = 'inline-flex';
+  }
+
+  function downloadQR(){
+    if (!qrInstance) return;
+    var canvas = document.getElementById('qr-canvas');
+    if (!canvas) return;
+    var link = document.createElement('a');
+    var source = document.getElementById('source').value.trim() || 'qr';
+    link.download = 'mcr-planet-qr-' + source.replace(/[^a-z0-9]+/gi, '-') + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }
+
+  function copyUrl(){
+    var url = buildUrl();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function(){
+        alert('URL copied:\n' + url);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); alert('Copied!'); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  }
+
+  var PRESETS = {
+    'business-card': { url: '/', source: 'business-card', medium: 'business-card', campaign: '' },
+    'booth':         { url: '/', source: 'conference-booth', medium: 'booth', campaign: '2026' },
+    'email-signature': { url: '/', source: 'email-signature', medium: 'email', campaign: '' },
+    'print-catalog':   { url: '/', source: 'print-catalog', medium: 'print', campaign: '2026' }
+  };
+  function applyPreset(name){
+    var p = PRESETS[name];
+    if (!p) return;
+    document.getElementById('url').value = p.url;
+    document.getElementById('source').value = p.source;
+    document.getElementById('medium').value = p.medium;
+    document.getElementById('campaign').value = p.campaign;
+    updatePreview();
+  }
+
+  ['url', 'source', 'medium', 'campaign'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', updatePreview);
+    document.getElementById(id).addEventListener('change', updatePreview);
+  });
+  updatePreview();
+</script>
+</body>
+</html>

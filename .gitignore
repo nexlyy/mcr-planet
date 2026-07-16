@@ -1,0 +1,17 @@
+# build artifacts (nginx precompression regenerates these on the server)
+*.br
+*.gz
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# logs / temp
+*.log
+*.bak
+*.tmp

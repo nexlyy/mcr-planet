@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#c9a84c">
+<meta name="description" content="MCR Planet — industrial equipment for mining, construction and recycling. Engineering · Geology · Innovation.">
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp / Telegram preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MCR Planet">
+<meta property="og:title" content="MCR Planet — Industrial Equipment">
+<meta property="og:description" content="Engineering · Geology · Innovation. Industrial equipment for mining, construction and recycling across EU.">
+<meta property="og:image" content="https://mcrplanet.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MCR Planet — Industrial Equipment">
+<meta property="og:url" content="https://mcrplanet.com">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="pl_PL">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCR Planet — Industrial Equipment">
+<meta name="twitter:description" content="Engineering · Geology · Innovation. Mining, construction, recycling equipment across EU.">
+<meta name="twitter:image" content="https://mcrplanet.com/media/og-image.jpg">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://mcrplanet.com/">
+
+<title>MCR Planet — Industrial Equipment for Mining, Construction &amp; Recycling</title>
+<!-- FAVICONS: золотое лого MCR -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<!-- PWA manifest -->
+<link rel="manifest" href="manifest.json">
+<!-- Preload hero — критично для LCP. imagesrcset позволяет браузеру выбрать
+     нужный размер (768/1200/1600/2000w) и сэкономить ~90 KiB на desktop. -->
+<link rel="preload" as="image" type="image/avif"
+      imagesrcset="media/hero-bg-768w.avif 768w, media/hero-bg-1200w.avif 1200w, media/hero-bg-1600w.avif 1600w, media/hero-bg.avif 2000w"
+      imagesizes="100vw"
+      fetchpriority="high">
+<!-- EARLY BOOT: scroll-fix + language/theme detect до первого рендера -->
+<script>
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+
+  // === Language detection ===
+  // Приоритет: 1) сохранённый выбор, 2) Accept-Language браузера, 3) EN
+  (function(){
+    try {
+      var saved = localStorage.getItem('mcr_lang');
+      if (saved && ['en','es','pl'].indexOf(saved) >= 0) {
+        window.__mcrLang = saved;
+        return;
+      }
+      var browserLangs = (navigator.languages || [navigator.language || 'en']).map(function(l){
+        return (l || '').toLowerCase().slice(0, 2);
+      });
+      // Маппинг: европейские испанские диалекты → es, польский → pl, всё остальное → en
+      for (var i = 0; i < browserLangs.length; i++) {
+        var l = browserLangs[i];
+        if (l === 'es') { window.__mcrLang = 'es'; return; }
+        if (l === 'pl') { window.__mcrLang = 'pl'; return; }
+        if (l === 'en') { window.__mcrLang = 'en'; return; }
+      }
+      window.__mcrLang = 'en';
+    } catch(e){ window.__mcrLang = 'en'; }
+  })();
+
+  // === Theme detection ===
+  // Приоритет: 1) сохранённый выбор, 2) prefers-color-scheme системы, 3) dark
+  (function(){
+    try {
+      var savedTheme = localStorage.getItem('mcr_theme');
+      if (savedTheme === '1' || savedTheme === 'light') {
+        document.documentElement.className = 'light';
+        return;
+      }
+      if (savedTheme === '0' || savedTheme === 'dark') {
+        return; // тёмная — по умолчанию
+      }
+      // Нет сохранённого — смотрим систему
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.className = 'light';
+      }
+    } catch(e){}
+  })();
+</script>
+<!-- Шрифты загружаются асинхронно — не блокируют рендер на iOS -->
+<link href="/assets/fonts/fonts.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="/assets/fonts/fonts.css" rel="stylesheet"></noscript>
+
+<!-- Critical CSS inline: мгновенный первый paint без ожидания CSS-файлов -->
+<style>
+/* Fallback-шрифты с подогнанной метрикой — гасят CLS до загрузки веб-шрифтов */
+/* Точные метрики fallback-шрифтов для устранения CLS при font swap.
+   Значения подобраны так, чтобы текст НЕ менял размер при загрузке Google Fonts. */
+@font-face {
+  font-family: 'LibreBaskerville-fallback';
+  src: local('Georgia'), local('Times New Roman'), local('serif');
+  size-adjust: 99.5%;
+  ascent-override: 89%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Nunito-fallback';
+  src: local('Segoe UI'), local('Helvetica'), local('Arial'), local('sans-serif');
+  size-adjust: 100%;
+  ascent-override: 101%;
+  descent-override: 33%;
+  line-gap-override: 0%;
+}
+:root{--gold:#c9a84c;--mine:#c9a84c;--construction:#4a7fa5;--recycling:#5a9e6f;--new:#7a7a7a;--nav-h:68px;--bg:#0a0a0a;--bg-nav:rgba(10,10,10,0.95);--surface:#121212;--text:#f0ede6;--text-2:rgba(240,237,230,0.72);--text-3:rgba(240,237,230,0.55);--border:rgba(240,237,230,0.08);--border-h:rgba(201,168,76,0.35);--card-h:rgba(240,237,230,0.02);}
+html.light{--bg:#f0ede6;--bg-nav:rgba(240,237,230,0.97);--surface:#e8e4dc;--text:#0d0d0d;--text-2:#1e1e1e;--text-3:#555555;--border:rgba(0,0,0,0.13);--border-h:rgba(201,168,76,0.6);--card-h:rgba(0,0,0,0.03);--gold:#8a6f20;--mine:#8a6f20;--construction:#2c5a78;--recycling:#2e6b40;--new:#5a5a5a;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{font-size:clamp(15px,1.05vw,22px);scroll-behavior:smooth;}
+@media(max-width:768px){html{font-size:clamp(15px,4vw,17px);}}
+body{background:var(--bg);color:var(--text);font-family:'Nunito','Nunito-fallback',sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+#preloader{position:fixed;inset:0;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s ease;}
+#preloader.fade{opacity:0;pointer-events:none;}
+.pre-letters{display:flex;gap:.2em;font-family:'Libre Baskerville',serif;font-size:3rem;font-weight:700;color:#c9a84c;letter-spacing:.2em;margin-bottom:.4em;}
+.pre-letter{animation:prePulse 1.4s ease infinite;opacity:.3;}
+.pre-letter:nth-child(2){animation-delay:.2s;}
+.pre-letter:nth-child(3){animation-delay:.4s;}
+@keyframes prePulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+.pre-group{font-family:'Libre Baskerville',serif;color:#c9a84c;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;margin-bottom:1.5rem;}
+.pre-bar{width:140px;height:2px;background:rgba(201,168,76,.15);border-radius:2px;overflow:hidden;}
+.pre-bar-fill{height:100%;width:0;background:#c9a84c;transition:width .3s ease;}
+.hero{height:100vh;height:100svh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center;overflow:hidden;padding:0 24px;background:#080c08;contain:layout paint;}
+.hero-photo{position:absolute;inset:0;display:block;line-height:0;contain:strict;width:100%;height:100%;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;}
+.hero-photo::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.62);pointer-events:none;}
+.hero-bg{position:absolute;inset:0;contain:strict;}
+.hero-tagline{font-family:'Libre Baskerville','LibreBaskerville-fallback',serif;font-size:1.05rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:22px;position:relative;}
+.hero-title{font-family:'Libre Baskerville','LibreBaskerville-fallback',serif;font-size:9rem;font-weight:600;line-height:.95;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.5);position:relative;letter-spacing:-.02em;}
+.hero-title .hero-group{font-size:5.5rem;font-weight:400;letter-spacing:.08em;display:block;color:#fff;margin-top:12px;}
+@media(max-width:768px){.hero-title{font-size:6.5rem;}.hero-title .hero-group{font-size:4rem;}}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 52px;background:var(--bg-nav);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);box-sizing:border-box;}
+</style>
+
+<!-- Остальные CSS грузим асинхронно, чтобы не блокировать рендер -->
+<link rel="preload" href="assets/css/base.css?v=20260605f" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="assets/css/layout.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="assets/css/components.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="assets/css/catalog.css?v=20260605d" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="assets/css/scrollbar.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="assets/css/base.css?v=20260605f">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/catalog.css?v=20260605d">
+  <link rel="stylesheet" href="assets/css/scrollbar.css">
+</noscript>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+<!-- hCaptcha грузится лениво, когда форма попадает в viewport (см. 02-render.js) -->
+<!-- Так на первом экране не тянем ~100 KB JS, пока юзер не долистал до формы -->
+<script>
+  /* EmailJS — свои значения из панели emailjs.com */
+  window.EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY_HERE";
+  window.EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID_HERE";
+  window.EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID_HERE";
+  /* EmailJS подключён с defer, поэтому init после DOMContentLoaded */
+  document.addEventListener('DOMContentLoaded', function(){
+    if (window.emailjs && window.EMAILJS_PUBLIC_KEY && window.EMAILJS_PUBLIC_KEY.indexOf("YOUR_") !== 0) {
+      try { emailjs.init({ publicKey: window.EMAILJS_PUBLIC_KEY }); } catch(e) { console.warn("EmailJS init failed:", e); }
+    }
+  });
+
+  /* hCaptcha. Тут стоит тестовый site key (всегда «успешен») — на проде
+     подставь свой. Site key публичный, токен проверяет бэкенд по секрету. */
+  window.HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001";
+
+  /* Umami — свой Website ID из cloud.umami.is.
+     Бесплатный план: 10K просмотров/мес, без cookies и баннера согласия. */
+  window.UMAMI_WEBSITE_ID = "YOUR_UMAMI_WEBSITE_ID_HERE";
+  window.UMAMI_SCRIPT_URL = "https://cloud.umami.is/script.js";
+  /* Грузим лениво — после первого paint и в idle, чтобы аналитика
+     не била по LCP/FCP и не отъедала main thread на первом экране. */
+  (function(){
+    if (!window.UMAMI_WEBSITE_ID || window.UMAMI_WEBSITE_ID.indexOf("YOUR_") === 0) return;
+    function loadUmami(){
+      var sc = document.createElement('script');
+      sc.async = true;
+      sc.src = window.UMAMI_SCRIPT_URL;
+      sc.setAttribute('data-website-id', window.UMAMI_WEBSITE_ID);
+      document.head.appendChild(sc);
+    }
+    function schedule(){
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadUmami, { timeout: 3000 });
+      } else {
+        setTimeout(loadUmami, 1500);
+      }
+    }
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule);
+  })();
+
+  /* Бот-вебхук: параллельно с EmailJS дублирует заявку в бэкенд.
+     Относительный путь проксируется на стороне сервера.
+     Секрет с клиента не уходит — бэкенд отсекает чужой Origin. */
+  window.BOT_WEBHOOK_URL = "/bot-webhook/form";
+</script>
+<!-- Schema.org structured data для rich snippets в Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mcrplanet.com/#organization",
+      "name": "MCR Planet",
+      "legalName": "MINE & CONSTRUCTION & RECYCLING SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+      "url": "https://mcrplanet.com/",
+      "logo": "https://mcrplanet.com/icon-512.png",
+      "description": "Industrial equipment for mining, recycling and construction across the EU. Engineering, geology and innovation.",
+      "email": "info@mcrplanet.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Żurawiec 10",
+        "addressLocality": "Chrzanów",
+        "postalCode": "32-500",
+        "addressCountry": "PL"
+      },
+      "identifier": [
+        {"@type": "PropertyValue", "propertyID": "NIP",   "value": "6282264574"},
+        {"@type": "PropertyValue", "propertyID": "KRS",   "value": "0000571071"},
+        {"@type": "PropertyValue", "propertyID": "REGON", "value": "362253717"}
+      ],
+      "areaServed": ["PL", "ES", "DE", "CZ", "SK", "UA", "IT", "FR"],
+      "knowsAbout": ["Mining equipment", "Recycling equipment", "Construction equipment", "Vibrating screens", "Crushers", "Feeders", "Conveyors"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://mcrplanet.com/#localbusiness",
+      "name": "MCR Planet",
+      "image": "https://mcrplanet.com/media/og-image.jpg",
+      "url": "https://mcrplanet.com/",
+      "email": "info@mcrplanet.com",
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Żurawiec 10",
+        "addressLocality": "Chrzanów",
+        "postalCode": "32-500",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.1353,
+        "longitude": 19.3998
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mcrplanet.com/#website",
+      "url": "https://mcrplanet.com/",
+      "name": "MCR Planet",
+      "publisher": {"@id": "https://mcrplanet.com/#organization"},
+      "inLanguage": ["en", "es", "pl"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mcrplanet.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pre-letters">
+    <span class="pre-letter">M</span>
+    <span class="pre-letter">C</span>
+    <span class="pre-letter">R</span>
+  </div>
+  <div class="pre-group">Planet</div>
+  <div class="pre-bar"><div class="pre-bar-fill" id="pre-bar-fill"></div></div>
+</div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="spbar"></div>
+<div id="side-nav">
+  <div class="sd act" data-t="overview"><span class="sd-lbl">Our Expertise</span></div>
+  <div class="sd" data-t="sections"><span class="sd-lbl">Mine · Construction · Recycling</span></div>
+  <div class="sd" data-t="about"><span class="sd-lbl">About Us</span></div>
+</div>
+<button id="btt" aria-label="Top">&#8593;</button>
+<div id="toast">Copied!</div>
+<div id="loading"><div class="loading-logo">MCR</div></div>
+
+<nav>
+  <a class="nav-logo" href="#top" onclick="goToTop(event)">MCR Planet</a>
+  <ul class="nav-center">
+    <li><a href="#overview" data-i18n="nav.directions">Directions</a></li>
+    <li><a href="#about" data-i18n="nav.about">About Us</a></li>
+    <li><a href="#contact" data-i18n="nav.contacts">Contacts</a></li>
+  </ul>
+  <div id="nav-search-wrap">
+    <svg id="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="nav-search-input" type="text" aria-label="Search services" data-i18n-placeholder="ui.searchph" placeholder="Search services..." autocomplete="off" spellcheck="false">
+    <button id="nav-search-clear" aria-label="Clear search" style="display:none">&#215;</button>
+  </div>
+  <div class="nav-right">
+    <label class="theme-switch" title="Toggle theme">
+      <input type="checkbox" id="themeCheckbox">
+      <div class="theme-track"><div class="theme-thumb" id="themeThumb">&#9790;</div></div>
+    </label>
+    <div class="nav-lang">
+      <button class="lang-btn active" id="btn-en">ENG</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" id="btn-es">ESP</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" id="btn-pl">POL</button>
+    </div>
+  </div>
+  <button id="mob-search-btn" aria-label="Search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </button>
+  <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Мобильный поиск оверлей -->
+<div id="mob-search-overlay">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <input id="mob-search-field" type="search" aria-label="Search" placeholder="Search..." autocomplete="off">
+  <button id="mob-search-cancel" aria-label="Cancel search">Cancel</button>
+</div>
+<div id="mob-search-results"></div>
+
+<div class="mob-overlay" id="mobOverlay" onclick="closeMenu()"></div>
+<div class="mobile-nav" id="mobileNav">
+  <div class="mob-header">
+    <span class="nav-logo">MCR Planet</span>
+    <button class="mob-close" aria-label="Close menu" onclick="closeMenu()">&times;</button>
+  </div>
+  <div class="mob-body">
+    <a href="#overview" data-i18n="nav.directions">Directions</a>
+    <a href="#about" data-i18n="nav.about">About Us</a>
+    <a href="#contact" data-i18n="nav.contacts">Contacts</a>
+    <div class="mobile-lang">
+      <button id="mbtn-en" class="active">ENG</button>
+      <button id="mbtn-es">ESP</button>
+      <button id="mbtn-pl">POL</button>
+    </div>
+    <div class="mobile-theme">
+      <span class="mobile-theme-label" id="mobileThemeLabel" data-i18n="ui.darkMode">Dark Mode</span>
+      <label class="theme-switch">
+        <input type="checkbox" id="mobileThemeCheckbox">
+        <div class="theme-track"><div class="theme-thumb" id="mobileThemeThumb">&#9790;</div></div>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div id="top"></div>
+<section class="hero">
+  <picture class="hero-photo">
+    <source type="image/avif"
+      srcset="media/hero-bg-768w.avif 768w, media/hero-bg-1200w.avif 1200w, media/hero-bg-1600w.avif 1600w, media/hero-bg.avif 2000w"
+      sizes="100vw">
+    <source type="image/webp"
+      srcset="media/hero-bg-768w.webp 768w, media/hero-bg-1200w.webp 1200w, media/hero-bg-1600w.webp 1600w, media/hero-bg.webp 2000w"
+      sizes="100vw">
+    <source type="image/jpeg"
+      srcset="media/hero-bg-768w.jpg 768w, media/hero-bg-1200w.jpg 1200w, media/hero-bg-1600w.jpg 1600w, media/hero-bg.jpg 2000w"
+      sizes="100vw">
+    <img src="media/hero-bg-1200w.jpg" alt="" aria-hidden="true" decoding="async" fetchpriority="high" width="2000" height="1250">
+  </picture>
+  <div class="hero-bg"></div><div class="hero-tint" id="hero-tint"></div>
+  <p class="hero-tagline" data-i18n="hero.tagline">Engineering &middot; Geology &middot; Innovation</p>
+  <h1 class="hero-title">MCR<span class="hero-group">PLANET</span></h1>
+  <p class="hero-sub" data-i18n="hero.sub">Mine<br>&middot;<br>Construction<br>&middot;<br>Recycling</p>
+  <div class="hero-scroll"><span data-i18n="ui.scroll">Scroll</span><div class="scroll-line"></div></div>
+</section>
+<section class="overview" id="overview">
+  <p class="section-label" data-i18n="ui.directions">Our Directions</p>
+  <div class="div-grid" id="divGrid"></div>
+</section>
+<div class="sep"></div>
+<section id="sections"><div id="sectionsContainer"></div>
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <p class="section-label" data-i18n="ui.about">About Us</p>
+      <h2 class="section-title about-title-size" id="about-title"></h2>
+      <div class="about-line"></div>
+      <p class="about-text" id="about-p1"></p>
+      <p class="about-text" id="about-p2"></p>
+      <p class="about-text" id="about-p3"></p>
+    </div>
+    <div class="about-right" id="about-stats"></div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p class="section-label" data-i18n="ui.contact">Get in Touch</p>
+      <h2 class="section-title" id="contact-title"></h2>
+      <div class="c-detail"><div class="c-label" data-i18n="ui.company">Company</div><div class="c-val" id="c-company"></div></div>
+      <div class="c-detail"><div class="c-label" data-i18n="ui.email">Email</div><div class="c-val" id="c-email"></div></div>
+
+    </div>
+    <div class="contact-form-wrap">
+      <div class="contact-form">
+        <div class="f-field"><label class="f-label" for="f-name" data-i18n="ui.fname">Your Name</label><input class="f-input" id="f-name" type="text" name="from_name" autocomplete="name" aria-required="true"></div>
+        <div class="f-field"><label class="f-label" for="f-email" data-i18n="ui.femail">Email</label><input class="f-input" id="f-email" type="email" name="from_email" autocomplete="email" aria-required="true"></div>
+        <div class="f-field"><label class="f-label" for="f-dir" data-i18n="ui.fdir">Direction</label><input class="f-input" id="f-dir" type="text" name="direction"></div>
+        <div class="f-field"><label class="f-label" for="f-msg" data-i18n="ui.fmsg">Message</label><textarea class="f-textarea" id="f-msg" name="message"></textarea></div>
+        <!-- Honeypot для ботов: скрыто стилями -->
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <!-- hCaptcha -->
+        <div class="f-captcha"><div id="hcaptcha-container"></div></div>
+        <!-- GDPR consent -->
+        <label class="f-consent" id="f-consent-label">
+          <input type="checkbox" id="f-consent-cb">
+          <span data-i18n="ui.consent">I have read and agree to the <a href="pages/privacy.html" target="_blank">Privacy Policy</a> and consent to the processing of my personal data.</span>
+        </label>
+        <button class="f-btn" data-i18n="ui.fsend">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+</section>
+<footer>
+  <div class="f-logo">MCR Planet</div>
+  <div class="f-divs">
+    <span class="f-div mine">Mine</span>
+    <span class="f-div construction" data-i18n="div.construction">Construction</span>
+    <span class="f-div recycling" data-i18n="div.recycling">Recycling</span>
+  </div>
+  <div class="f-legal" style="display:flex;gap:18px;font-family:'Nunito',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;">
+    <a href="products/index.html" data-i18n="footer.catalogue" style="color:var(--text-3);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-3)'">Equipment Catalogue</a>
+    <a href="pages/privacy.html" data-i18n="footer.privacy" style="color:var(--text-3);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-3)'">Privacy Policy</a>
+    <a href="pages/terms.html" data-i18n="footer.terms" style="color:var(--text-3);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-3)'">Terms</a>
+  </div>
+  <button class="pdf-btn" onclick="generatePDF()" title="Download contact card as PDF">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1.5H8V17zm0-3h8v1.5H8V14zm0-3h5v1.5H8V11z"/></svg>
+    PDF Card
+  </button>
+  <div class="f-copy">&copy; 2026 MCR Planet.</div>
+</footer>
+
+<script src="assets/js/01-translations.js?v=20260713" defer></script>
+<script src="assets/js/02-render.js?v=20260605f" defer></script>
+<script src="assets/js/03-search.js?v=20260605c" defer></script>
+<script src="assets/js/catalog-data.js" defer></script>
+<script src="assets/js/04-catalog.js?v=20260713a" defer></script>
+<!-- bot-integrations: шлёт JS-ошибки и поисковые запросы в /bot-webhook/ -->
+<script src="assets/js/bot-integrations.js" defer></script>
+<script src="assets/js/05-global-search.js?v=20260605c" defer></script>
+<script>
+/* SEO/a11y: keep <html lang> in sync with the selected language on the homepage */
+document.addEventListener('DOMContentLoaded',function(){
+  function setHtmlLang(l){ if(['en','es','pl'].indexOf(l)>=0){ try{document.documentElement.lang=l;}catch(e){} } }
+  try{ setHtmlLang(localStorage.getItem('mcr_lang')||document.documentElement.lang||'en'); }catch(e){}
+  if(typeof window.setLang==='function'){ var _o=window.setLang; window.setLang=function(l){ var r=_o.apply(this,arguments); setHtmlLang(l); return r; }; }
+});
+</script>
+
+<!-- ПОИСК оверлей -->
+<div id="search-overlay">
+  <div id="search-box">
+    <input id="search-input" type="text" placeholder="Search services..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<!-- ХЛЕБНЫЕ КРОШКИ -->
+<div id="breadcrumb">
+  <span class="bc-item bc-section-name" id="bc-section"></span>
+  <span class="bc-sep">›</span>
+  <span class="bc-item bc-current" id="bc-service"></span>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="modal-overlay">
+  <div id="modal-box">
+    <button id="modal-close" aria-label="Close">✕</button>
+    <div id="modal-content">
+      <div class="modal-tag" id="modal-tag"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <ul class="modal-points" id="modal-points"></ul>
+      <button class="modal-read-more" id="modal-read-more" data-i18n="ui.readmore">Read full section →</button>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <div id="cookie-text">
+    We use cookies to improve your experience. By continuing, you agree to our
+    <a href="pages/privacy.html">Privacy Policy</a>. This site complies with GDPR.
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-accept" id="cookie-accept">Accept</button>
+    <button class="cookie-decline" id="cookie-decline">Decline</button>
+  </div>
+</div>
+
+<!-- СОЦСЕТИ FAB — скрыто пока нет реальных аккаунтов в LinkedIn/FB/IG.
+     Когда появятся: раскомментируй этот блок и подставь реальные URL вместо YOUR_* -->
+<!--
+<div id="social-fab">
+  <a class="fab-btn fab-li" id="fab-li" href="https://linkedin.com/company/YOUR_LINKEDIN" target="_blank" rel="noopener">
+    <span class="fab-label">LinkedIn</span>
+    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <a class="fab-btn fab-fb" id="fab-fb" href="https://facebook.com/YOUR_FACEBOOK" target="_blank" rel="noopener">
+    <span class="fab-label">Facebook</span>
+    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+  <a class="fab-btn fab-ig" id="fab-ig" href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" rel="noopener">
+    <span class="fab-label">Instagram</span>
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+  </a>
+  <button class="fab-toggle" id="fab-toggle" aria-label="Toggle quick actions">+</button>
+</div>
+-->
+
+<!-- КАТАЛОГ OVERLAY -->
+<div id="catalog-overlay">
+ <div class="cat-nav-bar">
+    <!-- Лого — закрывает каталог и возвращает наверх -->
+    <button class="nav-logo" id="cat-logo-btn" onclick="hideCatalog(); setTimeout(function(){ window.scrollTo(0,0); }, 50);">MCR Planet</button>
+    <!-- Поиск по каталогу (десктоп) -->
+    <div id="cat-nav-search-wrap">
+      <svg id="cat-nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="cat-nav-search-input" type="text" aria-label="Search equipment" placeholder="Search equipment..." autocomplete="off" spellcheck="false">
+      <button id="cat-nav-search-clear" type="button" aria-label="Clear search" style="display:none">&#215;</button>
+      <div id="cat-nav-search-results"></div>
+    </div>
+    <!-- Десктоп: тема + язык -->
+    <div class="cat-nav-right">
+      <label class="theme-switch" title="Toggle theme" id="cat-theme-label">
+        <input type="checkbox" id="cat-theme-cb" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none;">
+        <div class="theme-track"><div class="theme-thumb" id="cat-theme-thumb">&#9790;</div></div>
+      </label>
+      <div class="nav-lang">
+        <button class="lang-btn" id="cat-btn-en">ENG</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="cat-btn-es">ESP</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="cat-btn-pl">POL</button>
+      </div>
+    </div>
+    <!-- Мобильный: лупа + бургер сгруппированы -->
+    <div class="cat-nav-mobile-actions">
+      <button id="cat-mob-search-btn" aria-label="Search" onclick="catOpenMobSearch()">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="burger" id="cat-burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+
+  <!-- Мобильный поиск каталога -->
+  <div id="cat-mob-search-overlay">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="cat-mob-search-field" type="search" aria-label="Search equipment" placeholder="Search equipment..." autocomplete="off">
+    <button id="cat-mob-search-cancel" onclick="catCloseMobSearch()">Cancel</button>
+  </div>
+  <div id="cat-mob-search-results"></div>
+  <!-- Мобильное меню каталога — идентично mobileNav главной -->
+  <div class="mob-overlay" id="catMobOverlay" onclick="catCloseMenu()"></div>
+  <div class="mobile-nav" id="catMobileNav">
+    <div class="cat-mob-header">
+      <span class="nav-logo">MCR Planet</span>
+      <button class="cat-mob-close" id="cat-mob-close" aria-label="Close" onclick="catCloseMenu()">&times;</button>
+    </div>
+    <div class="cat-mob-body">
+      <div class="mobile-lang">
+        <button id="cat-mbtn-en">ENG</button>
+        <button id="cat-mbtn-es">ESP</button>
+        <button id="cat-mbtn-pl">POL</button>
+      </div>
+      <div class="mobile-theme">
+        <span class="mobile-theme-label" id="catMobileThemeLabel" data-i18n="ui.darkMode">Dark Mode</span>
+        <label class="theme-switch">
+          <input type="checkbox" id="catMobileThemeCheckbox">
+          <div class="theme-track"><div class="theme-thumb" id="catMobileThemeThumb">&#9790;</div></div>
+        </label>
+      </div>
+      <button id="cat-mob-back" onclick="hideCatalog();catCloseMenu();">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span data-i18n="ui.backToMcr">Back to MCR Planet</span>
+      </button>
+    </div>
+  </div>
+  <!-- Мобильное меню каталога -->
+  
+  
+
+
+
+
+<div class="cat-hero">
+  <p class="cat-label">MCR Planet</p>
+  <h1 class="cat-title" data-i18n="cat.title">Equipment Catalogue</h1>
+  <p class="cat-desc" data-i18n="cat.desc">Comprehensive supply of industrial equipment and processing technologies for mining waste reprocessing, recycling, and biofuel production. Select a category to explore our solutions.</p>
+</div>
+
+<div class="cat-filters">
+  <button class="cat-filter active" data-filter="all" data-i18n="cat.filter.all">All Equipment</button>
+  <button class="cat-filter" data-filter="mine" data-i18n="cat.filter.mine">Mine Division</button>
+  <button class="cat-filter" data-filter="recycling" data-i18n="cat.filter.recycling">Recycling Division</button>
+</div>
+
+<div id="cat-content"></div>
+
+<footer class="cat-footer">
+  <div class="cat-footer-logo">MCR Planet</div>
+  <div class="cat-footer-copy">&copy; 2026 MCR Planet. info@mcrplanet.com</div>
+</footer>
+
+
+
+</div>
+<button id="cat-back-btn" onclick="hideCatalog()" data-i18n="ui.backShort">← Back</button>
+<!-- КАТАЛОГ — МОДАЛЬНОЕ ОКНО КАРТОЧКИ -->
+<div id="cat-modal-overlay">
+  <div id="cat-modal-box">
+    <button id="cat-modal-close">✕</button>
+    <div class="cat-modal-img-placeholder" id="cat-modal-placeholder">MCR Planet · Equipment</div>
+    <img id="cat-modal-img" src="" alt="">
+    <div class="cat-modal-thumbs" id="cat-modal-thumbs"></div>
+    <div id="cat-modal-content">
+      <div class="cat-modal-div-tag" id="cat-modal-tag"></div>
+      <h2 class="cat-modal-title" id="cat-modal-title"></h2>
+      <p class="cat-modal-desc" id="cat-modal-desc"></p>
+      <ul class="cat-modal-points" id="cat-modal-points"></ul>
+      <div id="cat-modal-specs"></div>
+      <div id="cat-modal-partner"></div>
+      <button class="cat-modal-req" id="cat-modal-req">Request Information →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Fuse.js грузится лениво, только когда юзер открывает поиск (Ctrl+K или кнопка) -->
+<!-- Экономит ~30 KB JS на первом экране -->
+<script>
+(function(){
+  var loaded = false;
+  window.__loadFuse = function(cb){
+    if (window.Fuse) { if(cb) cb(); return; }
+    if (loaded) return;
+    loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js';
+    s.onload = function(){ if(cb) cb(); };
+    document.head.appendChild(s);
+  };
+  /* Грузим Fuse при нажатии Ctrl+K или клике на search-button */
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      window.__loadFuse();
+    }
+  });
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    if (t && (t.closest('.nav-search') || t.closest('#global-search-btn') || t.closest('[data-search-trigger]'))) {
+      window.__loadFuse();
+    }
+  });
+  /* Safety net: после первого paint + idle — подгружаем на всякий случай */
+  window.addEventListener('load', function(){
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function(){ window.__loadFuse(); }, { timeout: 5000 });
+    } else {
+      setTimeout(function(){ window.__loadFuse(); }, 3000);
+    }
+  });
+})();
+</script>
+
+<!-- Wrap логотипа MCR PLANET по буквам для per-letter hover анимации -->
+<script>
+  (function(){
+    function wrapLogoLetters(){
+      var logos = document.querySelectorAll('.nav-logo');
+      for (var i = 0; i < logos.length; i++) {
+        var el = logos[i];
+        if (el.getAttribute('data-wrapped') === '1') continue;
+        var text = el.textContent;
+        if (!text || text.indexOf('MCR') === -1) continue;
+        var html = '';
+        for (var c = 0; c < text.length; c++) {
+          var ch = text.charAt(c);
+          if (ch === ' ') html += '<span class="lg-ch" style="width:.3em;display:inline-block;">&nbsp;</span>';
+          else html += '<span class="lg-ch">' + ch + '</span>';
+        }
+        el.innerHTML = html;
+        el.setAttribute('data-wrapped', '1');
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wrapLogoLetters);
+    } else {
+      wrapLogoLetters();
+    }
+    setTimeout(wrapLogoLetters, 600);
+  })();
+</script>
+
+<!-- Обработка редиректов с 404-страницы: открытие каталога (Contact обрабатывается через ?contact=1 в 02-render.js) -->
+<script>
+  (function(){
+    function handleRedirects(){
+      try {
+        if (sessionStorage.getItem('mcr_open_catalog') === '1') {
+          sessionStorage.removeItem('mcr_open_catalog');
+          /* Ждём пока preloader уйдёт и showCatalog станет доступна */
+          var tries = 0;
+          var iv = setInterval(function(){
+            tries++;
+            if (typeof window.showCatalog === 'function') {
+              clearInterval(iv);
+              window.showCatalog('all');
+            }
+            if (tries > 30) clearInterval(iv); /* 3 сек максимум */
+          }, 100);
+        }
+      } catch(e){}
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleRedirects);
+    } else {
+      handleRedirects();
+    }
+  })();
+</script>
+
+<!-- Service Worker registration для PWA -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').then(function(reg){
+        console.log('SW registered');
+        /* Force update check на каждой загрузке — чтобы не застрять на старой версии */
+        reg.update();
+        /* При обнаружении нового SW — автоматически активируем */
+        reg.addEventListener('updatefound', function(){
+          var newWorker = reg.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', function(){
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                /* Есть новая версия — перезагрузим страницу для чистого применения */
+                console.log('New SW installed, reloading...');
+                /* Только если пользователь не возражает (можно убрать confirm) */
+                window.location.reload();
+              }
+            });
+          }
+        });
+      }).catch(function(err){
+        console.log('SW registration failed:', err);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

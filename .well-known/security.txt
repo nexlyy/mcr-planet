@@ -1,0 +1,11 @@
+# MCR Planet — Security Contact (RFC 9116)
+# https://securitytxt.org/
+
+Contact: mailto:info@mcrplanet.com
+Expires: 2027-04-26T00:00:00.000Z
+Preferred-Languages: en, pl
+Canonical: https://mcrplanet.com/.well-known/security.txt
+Policy: https://mcrplanet.com/pages/privacy.html
+
+# If you discover a security vulnerability please email us at the address above.
+# We respond within 72 hours and appreciate responsible disclosure.

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c9a84c">
+<title>Equipment — MCR Planet</title>
+<meta name="description" content="MCR Planet equipment catalogue — industrial machinery for mining, recycling and construction.">
+
+<!-- Open Graph (обновляется из equipment-page.js в зависимости от товара) -->
+<meta property="og:type" content="product" id="og-type">
+<meta property="og:site_name" content="MCR Planet">
+<meta property="og:title" content="MCR Planet — Equipment" id="og-title">
+<meta property="og:description" content="Industrial equipment for mining, construction and recycling." id="og-desc">
+<meta property="og:image" content="https://mcrplanet.com/media/og-image.jpg" id="og-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://mcrplanet.com" id="og-url">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCR Planet — Equipment" id="tw-title">
+<meta name="twitter:description" content="Industrial equipment for mining, construction and recycling." id="tw-desc">
+<meta name="twitter:image" content="https://mcrplanet.com/media/og-image.jpg" id="tw-image">
+
+<link rel="canonical" href="https://mcrplanet.com/pages/equipment.html" id="canonical-link"><!-- FAVICONS: золотое лого MCR -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../favicon-96.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.json">
+<!-- EARLY BOOT: scroll-fix + theme detect -->
+<script>
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  // Theme
+  try {
+    var savedTheme = localStorage.getItem('mcr_theme');
+    if (savedTheme === '1' || savedTheme === 'light') {
+      document.documentElement.className = 'light';
+    } else if (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.documentElement.className = 'light';
+    }
+  } catch(e){}
+</script>
+<link href="/assets/fonts/fonts.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/scrollbar.css">
+<link rel="stylesheet" href="../assets/css/equipment.css?v=20260605">
+<!-- jsPDF для генерации брошюр -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<nav class="eq-nav">
+  <a href="../index.html" class="eq-nav-logo">MCR Planet</a>
+  <div class="eq-nav-right">
+    <label class="theme-switch" title="Toggle theme" onclick="eqToggleTheme()">
+      <div class="theme-track">
+        <div class="theme-thumb">☾</div>
+      </div>
+    </label>
+    <div class="nav-lang">
+      <button class="lang-btn" data-lang="en" onclick="eqSetLang('en')">ENG</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="es" onclick="eqSetLang('es')">ESP</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="pl" onclick="eqSetLang('pl')">POL</button>
+    </div>
+  </div>
+  <button class="eq-burger" id="eq-burger" aria-label="Open menu" aria-expanded="false" onclick="eqToggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE DRAWER (язык + тема, без поиска) -->
+<div class="eq-mob-overlay" id="eqMobOverlay" onclick="eqCloseMenu()"></div>
+<aside class="eq-mobile-nav" id="eqMobileNav" aria-hidden="true">
+  <div class="eq-mob-header">
+    <span class="eq-nav-logo">MCR Planet</span>
+    <button class="eq-mob-close" aria-label="Close menu" onclick="eqCloseMenu()">&times;</button>
+  </div>
+  <div class="eq-mob-body">
+    <div class="eq-mob-lang">
+      <button class="lang-btn" data-lang="en" onclick="eqSetLang('en');eqCloseMenu()">ENG</button>
+      <button class="lang-btn" data-lang="es" onclick="eqSetLang('es');eqCloseMenu()">ESP</button>
+      <button class="lang-btn" data-lang="pl" onclick="eqSetLang('pl');eqCloseMenu()">POL</button>
+    </div>
+    <div class="eq-mob-theme">
+      <span class="eq-mob-theme-label" id="eq-mob-theme-label">Dark Mode</span>
+      <label class="theme-switch" title="Toggle theme" onclick="eqToggleTheme()">
+        <div class="theme-track"><div class="theme-thumb">☾</div></div>
+      </label>
+    </div>
+    <a class="eq-mob-back" href="../index.html"><span id="eq-mob-back-label">← Back to MCR Planet</span></a>
+  </div>
+</aside>
+
+<!-- BREADCRUMBS -->
+<div class="eq-crumbs" id="eq-crumbs"></div>
+
+<!-- SIDE BACK BUTTON (same style as catalog) -->
+<a id="eq-back-btn" href="#" onclick="eqGoBack();return false;">← Back</a>
+
+<!-- ROOT (всё содержимое заполняется JS) -->
+<div id="eq-root">
+  <!-- Hero: gallery + title -->
+  <section class="eq-hero">
+    <div id="eq-gallery"></div>
+    <div class="eq-info">
+      <div class="eq-tag" id="eq-tag"></div>
+      <h1 class="eq-title" id="eq-title"></h1>
+      <p class="eq-lead" id="eq-lead"></p>
+      <div class="eq-cta-group">
+        <a class="eq-cta" id="eq-cta-top" href="../index.html#contact">Request Information →</a>
+        <button class="eq-cta eq-cta-pdf" id="eq-pdf-btn" onclick="eqGeneratePDF()" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:6px;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1.5H8V17zm0-3h8v1.5H8V14zm0-3h5v1.5H8V11z"/></svg>
+          <span id="eq-pdf-label">Download PDF</span>
+        </button>
+        <label class="pdf-theme-toggle" title="Use dark theme for PDF">
+          <input type="checkbox" id="eq-pdf-dark">
+          <span class="pdf-theme-label" id="eq-pdf-dark-label">Dark PDF</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content: features + specs + partner -->
+  <section class="eq-content">
+    <h2 class="eq-section-title" id="eq-features-title">Key Features</h2>
+    <ul class="eq-features" id="eq-features"></ul>
+
+    <div id="eq-specs-block"></div>
+
+    <div class="eq-partner" id="eq-partner-block" style="display:none;"></div>
+
+    <div class="eq-bottom-cta">
+      <h3 id="eq-cta-title">Interested in this equipment?</h3>
+      <p id="eq-cta-desc"></p>
+      <a class="eq-cta" id="eq-cta-btn" href="../index.html#contact">Request Information →</a>
+    </div>
+
+    <!-- Related equipment (3 похожих из той же division) -->
+    <section id="eq-related" style="display:none;">
+      <h2 class="eq-section-title" id="eq-related-title">You might also like</h2>
+      <div class="eq-related-grid" id="eq-related-grid"></div>
+    </section>
+
+    <!-- Recently viewed (3 последних просмотренных товара) -->
+    <section id="eq-recent" style="display:none;">
+      <h2 class="eq-section-title" id="eq-recent-title">Recently viewed</h2>
+      <div class="eq-related-grid" id="eq-recent-grid"></div>
+    </section>
+  </section>
+</div>
+
+<!-- Lightbox для увеличения фото -->
+<div id="eq-lightbox" onclick="eqCloseLightbox()">
+  <button class="lb-close" onclick="event.stopPropagation(); eqCloseLightbox();">✕</button>
+  <img id="eq-lightbox-img" src="" alt="">
+</div>
+
+<!-- STICKY CTA BAR — появляется при долгом скролле -->
+<div id="sticky-cta">
+  <div class="sc-info">
+    <span class="sc-label" id="sc-label">Interested?</span>
+    <span class="sc-title" id="sc-title">This equipment</span>
+  </div>
+  <a href="../index.html#contact" class="sc-btn" id="sc-btn">Request Quote →</a>
+</div>
+
+<!-- DATA + LOGIC -->
+<script src="../assets/js/catalog-data.js"></script>
+<script src="../assets/js/equipment-page.js?v=20260713a"></script>
+<script src="../assets/js/eq-pdf.js"></script>
+
+<!-- Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').then(function(reg){
+        reg.update();
+        reg.addEventListener('updatefound', function(){
+          var nw = reg.installing;
+          if (nw) {
+            nw.addEventListener('statechange', function(){
+              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                window.location.reload();
+              }
+            });
+          }
+        });
+      }).catch(function(){});
+    });
+  }
+</script>
+</body>
+</html>

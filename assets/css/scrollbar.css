@@ -1,0 +1,101 @@
+/* 
+   MCR Planet — Custom branded scrollbar
+   Compact (8px), gold thumb, transparent track, auto-fade until hover.
+   Cross-browser: WebKit (Chrome/Edge/Safari/Opera) + Firefox.
+   Подключи ПОСЛЕ base.css (нужна --gold переменная).
+ */
+
+/* 1. Firefox 
+   scrollbar-width: 'thin' ≈ 8px. 'auto' = дефолтная ширина, 'none' = скрыть.
+   scrollbar-color: <thumb> <track>. По умолчанию thumb прозрачный (скрыт),
+   при наведении на скроллящийся блок — становится золотым. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover,
+*:focus-within {
+  scrollbar-color: rgba(201, 168, 76, 0.55) transparent;
+}
+
+/* Главный page-scroll держим слегка видимым всегда — чтобы юзер видел
+   позицию страницы. Если это не нужно, замени на 'transparent transparent'. */
+html {
+  scrollbar-color: rgba(201, 168, 76, 0.30) transparent;
+}
+html:hover {
+  scrollbar-color: rgba(201, 168, 76, 0.65) transparent;
+}
+
+/* 2. WebKit (Chrome, Edge, Safari, Opera) */
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 8px;
+  /* Внутренний padding через прозрачную рамку — thumb выглядит уже самой полосы */
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color .25s ease;
+}
+
+/* Появляется когда курсор внутри скроллящегося блока */
+*:hover::-webkit-scrollbar-thumb,
+*:focus-within::-webkit-scrollbar-thumb {
+  background-color: rgba(201, 168, 76, 0.55);
+}
+
+/* Ярче когда курсор прямо на самой полосе */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(201, 168, 76, 0.85);
+}
+
+/* Полностью золотой при удержании / drag */
+*::-webkit-scrollbar-thumb:active {
+  background-color: #c9a84c;
+}
+
+/* Главный page scroll — лёгкая постоянная видимость */
+html::-webkit-scrollbar-thumb {
+  background-color: rgba(201, 168, 76, 0.30);
+}
+html:hover::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(201, 168, 76, 0.70);
+}
+
+/* Убираем дефолтные стрелки и угол на пересечении полос */
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* 3. Утилиты */
+
+/* Полностью скрыть скроллбар, оставив возможность скроллить */
+.mcr-scroll-hidden {
+  scrollbar-width: none;            /* Firefox */
+}
+.mcr-scroll-hidden::-webkit-scrollbar {
+  display: none;                    /* WebKit */
+}
+
+/* Принудительно показать золотой бар всегда (не auto-fade) */
+.mcr-scroll-visible {
+  scrollbar-color: rgba(201, 168, 76, 0.55) transparent !important;
+}
+.mcr-scroll-visible::-webkit-scrollbar-thumb {
+  background-color: rgba(201, 168, 76, 0.55) !important;
+}
