@@ -666,3 +666,6 @@ html.light #catMobileNav{
   color:var(--gold);
   border-color:var(--gold);
 }
+
+/* TEMP: Gema links hidden (remove this rule to restore) */
+.cat-card-partner,.eq-partner{display:none !important;}

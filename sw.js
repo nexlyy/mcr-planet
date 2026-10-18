@@ -1,7 +1,7 @@
 /* MCR Planet — Service Worker
    Простое кэширование ассетов для оффлайн-работы и быстрой загрузки */
 
-const CACHE_VERSION = 'mcr-v17-' + '20261018a';  // меняй при каждом деплое!
+const CACHE_VERSION = 'mcr-v17-' + '20261018b';  // меняй при каждом деплое!
 const PRECACHE = [
   '/',
   '/index.html',
