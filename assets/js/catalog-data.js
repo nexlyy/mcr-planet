@@ -30,7 +30,7 @@ var CATALOGUE = {
       options_title_es: 'Equipamiento opcional',
       options_title_pl: 'Wyposażenie opcjonalne',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -64,7 +64,7 @@ var CATALOGUE = {
       options_title_es: 'Equipamiento opcional',
       options_title_pl: 'Wyposażenie opcjonalne',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -98,7 +98,7 @@ var CATALOGUE = {
       options_title_es: 'Equipamiento opcional',
       options_title_pl: 'Wyposażenie opcjonalne',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -143,7 +143,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -187,7 +187,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -229,7 +229,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -272,7 +272,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -316,7 +316,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -360,7 +360,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -383,7 +383,7 @@ var CATALOGUE = {
       desc_es: 'Tolvas acumuladoras de varios tipos — cónicas, cuadradas y cilíndricas — para diversos productos a granel, ampliamente utilizadas en minería, agricultura, producción de materiales de construcción y procesamiento de residuos. Fabricamos tolvas de diferentes alturas y volúmenes, con posibilidad de producción según los planos del cliente. Las tolvas pueden equiparse con rejillas restrictivas, rejillas vibrantes para separar terrones sobredimensionados y vibromotores en las paredes para materiales propensos a la adherencia. Para prolongar la vida útil y evitar adherencias, las tolvas pueden revestirse con diversos tipos de revestimiento — goma, poliuretano o Hardox 450.',
       desc_pl: 'Zasobniki akumulacyjne różnych typów — stożkowe, kwadratowe i cylindryczne — do różnych produktów sypkich, szeroko stosowane w przemyśle wydobywczym, rolnictwie, produkcji materiałów budowlanych i przetwarzaniu odpadów. Produkujemy zasobniki o różnych wysokościach i pojemnościach, z możliwością produkcji według rysunków klienta. Zasobniki mogą być wyposażone w kraty ograniczające, kraty wibracyjne do oddzielania nadgabarytowych brył oraz wibratory na ściankach dla materiałów skłonnych do przyklejania. Dla wydłużenia żywotności i zapobiegania nawarstwieniom zasobniki mogą być wyłożone różnymi typami okładziny — gumą, poliuretanem lub Hardox 450.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -431,7 +431,7 @@ var CATALOGUE = {
         ]
       },
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -454,7 +454,7 @@ var CATALOGUE = {
       desc_es: 'Nos dedicamos tanto al desarrollo de nuevas líneas tecnológicas como a la ingeniería — la integración de diversos equipos en líneas y plantas existentes dedicadas a: procesamiento de materiales no metálicos; procesamiento de escorias metalúrgicas y utilización de residuos metálicos; utilización de residuos industriales; procesamiento y utilización de residuos de construcción; producción de materiales de construcción. Nuestra empresa ha acumulado una experiencia significativa en estudios de laboratorio de diversas materias primas minerales — minerales, materiales no metálicos y carbón. Utilizando nuestro propio equipo de diseño junto con tecnólogos, estamos listos para realizar tareas de diversa complejidad técnica.',
       desc_pl: 'Zajmujemy się zarówno opracowywaniem nowych linii technologicznych, jak i inżynierią — integracją różnych urządzeń w istniejące linie i zakłady związane z: przeróbką materiałów niemetalicznych; przeróbką żużli hutniczych i utylizacją odpadów metalonośnych; utylizacją odpadów przemysłowych; przeróbką i utylizacją odpadów budowlanych; produkcją materiałów budowlanych. Nasza firma zgromadziła znaczne doświadczenie w badaniach laboratoryjnych różnych mineralnych surowców — rud, materiałów niemetalicznych i węgla. Korzystając z własnego zespołu projektowego we współpracy z technologami, jesteśmy gotowi realizować zadania o różnej złożoności technicznej.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -479,7 +479,7 @@ var CATALOGUE = {
       desc_es: 'Los sistemas modulares de cribas de goma pueden utilizarse para la separación por tamaño de materiales sueltos secos, húmedos y congelados, así como pulpas. Nuestras cribas modulares de goma son la solución óptima para tareas que surgen en procesos de separación de materiales sueltos con alto grado de abrasividad, en condiciones de obstrucción de cribas y con niveles elevados de ruido.',
       desc_pl: 'Modułowe systemy sit gumowych mogą być wykorzystywane do separacji według wielkości suchych, mokrych i zamarzniętych materiałów sypkich, a także pulp. Nasze modułowe sita gumowe są optymalnym rozwiązaniem dla zadań powstających w procesach separacji materiałów sypkich o wysokim stopniu ścierności, w warunkach zaklejania sit i przy podwyższonym poziomie hałasu.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -502,7 +502,7 @@ var CATALOGUE = {
       desc_es: 'Para la instalación de cribas en los cuerpos de las cribas vibratorias se han desarrollado subbastidores extraíbles unificados y subbastidores con marco; se suministran junto con las cribas y pueden instalarse en cribas vibratorias de todos los tamaños. A cada tipo de criba le corresponde un subbastidor que proporciona el tensado necesario y la fijación fiable de las cribas. Las cribas se colocan sobre el subbastidor y se fijan a él. Las conexiones de fijación permiten una sustitución rápida de las cribas directamente sobre el cuerpo del equipo, sin necesidad de retirarlo a la zona de reparación. Los subbastidores se diseñan teniendo en cuenta los requisitos de resistencia y resistencia a vibraciones; su instalación no requiere desmontaje ni modificaciones en la estructura de la criba. Junto con los revestimientos, la construcción del subbastidor proporciona una protección suficiente del cuerpo del equipo frente al impacto del material cribado.',
       desc_pl: 'Do instalacji sit na korpusach przesiewaczy wibracyjnych opracowano uniwersalne wymienne podsitki oraz podsitki ramowe; dostarczane są wraz z sitami i mogą być instalowane na przesiewaczach wibracyjnych wszystkich rozmiarów. Każdemu typowi sita odpowiada określony podsitek, który zapewnia wymagane napięcie i niezawodne mocowanie sit. Sita umieszczane są na podsitku i do niego mocowane. Połączenia mocujące umożliwiają szybką wymianę sit bezpośrednio na korpusie przesiewacza, bez konieczności wyprowadzania go do strefy remontowej. Podsitki projektowane są z uwzględnieniem wymagań wytrzymałości i odporności na drgania; ich montaż nie wymaga demontażu ani modyfikacji konstrukcji przesiewacza. Wraz z wykładzinami konstrukcja podsitka zapewnia wystarczającą ochronę korpusu przesiewacza przed oddziaływaniem przesiewanego materiału.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -525,7 +525,7 @@ var CATALOGUE = {
       desc_es: 'Los resortes para trituradoras y cribas se utilizan en complejos de trituración-cribado y equipos en empresas de la industria minera. En su producción se imponen requisitos especiales a la calidad de los aceros para muelles, ya que debido a las elevadas cargas cíclicas son propensos a la rotura por fatiga del material. Fabricamos una amplia gama de resortes metálicos y de goma para trituradoras y cribas, así como para otra maquinaria de extracción y procesamiento mineral. Para diseños típicos de cribas y trituradoras, los resortes se fabrican según documentación técnica existente. También es posible fabricar cualquier tipo de resorte según planos disponibles en nuestra base, planos del cliente, muestras suministradas o parámetros especificados.',
       desc_pl: 'Sprężyny do kruszarek i przesiewaczy stosowane są w kompleksach kruszących-przesiewających i w urządzeniach przedsiębiorstw branży górniczej. W ich produkcji stawiane są szczególne wymagania jakości stali sprężynowych, ponieważ ze względu na duże obciążenia cykliczne są one podatne na zniszczenie zmęczeniowe materiału. Produkujemy szeroki asortyment sprężyn metalowych i gumowych do kruszarek i przesiewaczy, a także do innych maszyn do wydobycia i przeróbki kopalin. Dla typowych konstrukcji przesiewaczy i kruszarek sprężyny produkowane są według istniejącej dokumentacji technicznej. Możliwa jest również produkcja dowolnych typów sprężyn według rysunków z naszej bazy, rysunków klienta, dostarczonych próbek lub podanych parametrów.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -548,7 +548,7 @@ var CATALOGUE = {
       desc_es: 'Durante la operación, el equipo de trituración está sometido a cargas constantes y a fuertes impactos externos debido a la abrasividad de los materiales triturados. Por ello, es imposible evitar el desgaste del equipo durante su uso. La única forma de prolongar al máximo su vida útil es utilizar piezas de desgaste fabricadas con aceros especiales. Nos especializamos en la fabricación y reparación de piezas de desgaste para equipos de trituración y clasificación. Una de nuestras líneas de actividad es la producción de batidores, martillos, revestimientos, expulsores y parrillas para trituradoras. Es posible fabricar piezas según muestras o planos del cliente.',
       desc_pl: 'Podczas eksploatacji urządzenia kruszące poddawane są stałym obciążeniom i silnym oddziaływaniom zewnętrznym z uwagi na ścierność kruszonych materiałów. Dlatego nie można uniknąć zużycia urządzeń podczas ich użytkowania. Jedynym sposobem maksymalnego wydłużenia czasu pracy jest stosowanie części zużywających się ze specjalnych stali. Specjalizujemy się w produkcji i naprawie części zużywających się do urządzeń kruszących i sortujących. Jednym z kierunków naszej działalności jest produkcja bijaków, młotków, wykładzin, wyrzutników i rusztów do kruszarek. Możliwe jest wykonywanie części według próbek lub rysunków dostarczonych przez klienta.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -571,7 +571,7 @@ var CATALOGUE = {
       desc_es: 'Fabricación propia de tambores motrices y tensores para diversos tipos de cintas transportadoras, incluyendo canteras, plantas mineras y de procesamiento y minas. Diámetro mecanizado de 160 a 540 mm; longitud mecanizada del eje de 400 a 3000 mm. Además de las soluciones estándar, también se fabrican tambores según planos o bocetos del cliente. Se presta especial atención a la superficie del tambor — los tambores pueden suministrarse con superficie metálica lisa o revestidos de goma (espesor 10–20 mm) para mejor agarre con la banda.',
       desc_pl: 'Własna produkcja bębnów napędowych i napinających do różnych typów przenośników taśmowych, w tym dla kopalń odkrywkowych, zakładów górniczo-przeróbczych i kopalń głębinowych. Średnica obrabiana od 160 do 540 mm; długość obrabianego wału od 400 do 3000 mm. Oprócz rozwiązań standardowych bębny są również wykonywane według rysunków lub szkiców klienta. Szczególną uwagę przywiązuje się do powierzchni bębna — bębny mogą być dostarczane z gładką powierzchnią metalową lub okładzinowane gumą (grubość 10–20 mm) dla lepszej przyczepności do taśmy.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -594,7 +594,7 @@ var CATALOGUE = {
       desc_es: 'Los rodillos son uno de los componentes importantes de una cinta transportadora. Nuestra empresa cuenta con producción propia consolidada de varios tipos de este producto — rodillos metálicos y rodillos plásticos — que garantizan una operación estable del sistema y la durabilidad del equipo.',
       desc_pl: 'Rolki przenośnikowe są jednym z istotnych elementów przenośnika taśmowego. Nasza firma posiada własną, ugruntowaną produkcję kilku typów tego produktu — rolek metalowych i rolek plastikowych — zapewniających stabilną pracę systemu i trwałość urządzeń.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -617,7 +617,7 @@ var CATALOGUE = {
       desc_es: 'Seleccionamos para el cliente cintas transportadoras usadas (de segunda mano) con un pequeño porcentaje de desgaste. Estas cintas se han desmontado durante el mantenimiento programado o el reequipamiento de complejos mineros y de procesamiento, y a menudo se encuentran en buen estado o casi ideal. Tras la inspección, recorte de bordes, empalme de piezas a la longitud requerida, retirada del cordón y operaciones similares, son totalmente aptas para un uso prolongado en cintas transportadoras. Además de su uso directo, las cintas usadas se emplean también ampliamente para otras necesidades de planta: revestimiento de superficies en contacto con material abrasivo, canalones de descarga, fabricación de manguitos, juntas, etc. Prestamos también servicios de empalme, unión y reparación de cintas transportadoras, incluso en las instalaciones del cliente.',
       desc_pl: 'Dobieramy dla klienta używane taśmy przenośnikowe o niewielkim stopniu zużycia. Takie taśmy zostały zdemontowane podczas planowych remontów lub przezbrajania kompleksów górniczo-przeróbczych i często znajdują się w dobrym lub niemal idealnym stanie. Po przeglądzie, przycięciu krawędzi, sklejeniu fragmentów na wymaganą długość, usunięciu kordu i podobnych operacjach w pełni nadają się do dalszego, długotrwałego użytkowania na przenośnikach. Oprócz bezpośredniego przeznaczenia używane taśmy są również szeroko stosowane do innych potrzeb zakładu: wykładzina powierzchni stykających się z materiałem ściernym, rynny wyładowcze, produkcja sprzęgieł, uszczelek itp. Świadczymy również usługi sklejania, łączenia i napraw taśm przenośnikowych, także na terenie klienta.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -640,7 +640,7 @@ var CATALOGUE = {
       desc_es: 'Fabricamos sistemas de lavado a medida según sus especificaciones técnicas: diseño, fabricación e instalación. Desarrollamos sistemas de lavado para tareas de producción concretas, garantizando una alta recuperación de minerales útiles y los máximos indicadores económicos de su explotación. Los sistemas de lavado se entregan equipados con todo lo necesario para su puesta en marcha, compuestos por módulos separados montados sobre un bastidor semimóvil (patines), lo que permite trasladarlos fácilmente durante la temporada.',
       desc_pl: 'Produkujemy systemy płukania na zamówienie zgodnie z Państwa warunkami technicznymi: projektowanie, produkcja i montaż. Opracowujemy systemy płukania pod konkretne zadania produkcyjne, zapewniając wysoki uzysk surowców użytecznych oraz maksymalne wskaźniki ekonomiczne ich pozyskiwania. Systemy płukania są wyposażone we wszystkie urządzenia niezbędne do uruchomienia, składają się z oddzielnych modułów rozmieszczonych na półmobilnej ramie (płozach), co pozwala na ich łatwe przemieszczanie w sezonie.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
@@ -663,7 +663,7 @@ var CATALOGUE = {
       desc_es: 'Los armarios de control y automatización dotan a la maquinaria de procesamiento de sistemas de arranque, monitoreo y automatización completa. Diseñados a medida para complejos de trituración-cribado y líneas de procesamiento.',
       desc_pl: 'Szafy sterownicze i automatyki wyposażają maszyny przeróbcze w systemy rozruchu, monitorowania i pełnej automatyki. Projektowane indywidualnie dla kompleksów kruszących-przesiewających i linii technologicznych.',
 
-      partner: {
+      partner_hidden: { // TEMP: Gema links hidden, rename back to "partner" to restore
         en: 'Source: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         es: 'Fuente: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>',
         pl: 'Źródło: <a href="https://gema.com.ua/" target="_blank" rel="noopener">gema.com.ua</a>'
